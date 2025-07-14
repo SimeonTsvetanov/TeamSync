@@ -1,0 +1,17 @@
+{
+  "name": "TeamSync",
+  "short_name": "TeamSync",
+  "description": "Random Team Generator - Create balanced teams in seconds!",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0ea5e9",
+  "icons": [
+    { "src": "TeamSyncIcon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "TeamSyncIcon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "TeamSyncIcon-384.png", "sizes": "384x384", "type": "image/png" },
+    { "src": "TeamSyncIcon-256.png", "sizes": "256x256", "type": "image/png" },
+    { "src": "TeamSyncIcon-144.png", "sizes": "144x144", "type": "image/png" },
+    { "src": "TeamSyncIcon-72.png", "sizes": "72x72", "type": "image/png" }
+  ]
+}

@@ -77,8 +77,11 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // Parse participants (one per line)
-    const participants = participantsText.split("\n").filter((p) => p.trim());
+    // Parse participants (one per line), ignore empty rows
+    const participants = participantsText
+      .split("\n")
+      .map((p) => p.trim())
+      .filter((p) => p.length > 0);
 
     const numTeams = parseInt(numTeamsInput.value);
     if (numTeams < 2) {
@@ -186,5 +189,41 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       }
     });
+  });
+
+  // Cheat code: auto-populate friends if 'the followers' is entered
+  participantsTextarea.addEventListener("input", function () {
+    const lines = participantsTextarea.value.split("\n");
+    const cheatIndex = lines.findIndex(
+      (line) => line.trim().toLowerCase() === "the followers"
+    );
+    if (cheatIndex !== -1) {
+      const friendNames = [
+        "Simeon",
+        "Iliyana",
+        "George",
+        "Viki",
+        "Eli",
+        "Asen",
+        "Lubomir",
+        "Ralica",
+        "Venci",
+        "Slavi",
+        "Djoni",
+        "Apapa",
+        "Mitaka G",
+        "Antonio",
+        "Dinkata",
+        "Raiko",
+        "Tancheto",
+      ];
+      // Replace 'the followers' line with friendNames
+      const newLines = [
+        ...lines.slice(0, cheatIndex),
+        ...friendNames,
+        ...lines.slice(cheatIndex + 1),
+      ];
+      participantsTextarea.value = newLines.join("\n");
+    }
   });
 });
