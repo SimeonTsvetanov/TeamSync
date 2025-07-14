@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TeamSync | Random Team Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: "#f0f9ff",
+                100: "#e0f2fe",
+                200: "#bae6fd",
+                300: "#7dd3fc",
+                400: "#38bdf8",
+                500: "#0ea5e9",
+                600: "#0284c7",
+                700: "#0369a1",
+                800: "#075985",
+                900: "#0c4a6e",
+              },
+              secondary: {
+                50: "#f5f3ff",
+                100: "#ede9fe",
+                200: "#ddd6fe",
+                300: "#c4b5fd",
+                400: "#a78bfa",
+                500: "#8b5cf6",
+                600: "#7c3aed",
+                700: "#6d28d9",
+                800: "#5b21b6",
+                900: "#4c1d95",
+              },
+              dark: "#1e293b",
+              light: "#f8fafc",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="min-h-screen bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white">
+      <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="flex items-center mb-6 md:mb-0">
+            <i class="fas fa-users text-3xl mr-3"></i>
+            <h1 class="text-3xl font-bold">TeamSync</h1>
+          </div>
+          <div class="flex space-x-3 md:space-x-6">
+            <a
+              href="#generator"
+              class="px-4 py-2 rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 transition flex items-center justify-center w-10 h-10 md:w-auto md:h-auto md:px-6 md:py-2"
+              title="Generator"
+            >
+              <i class="fas fa-random text-lg"></i>
+              <span class="hidden md:inline ml-2">Generator</span>
+            </a>
+            <a
+              href="#how-it-works"
+              class="px-4 py-2 rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 transition flex items-center justify-center w-10 h-10 md:w-auto md:h-auto md:px-6 md:py-2"
+              title="Info"
+            >
+              <i class="fas fa-info-circle text-lg"></i>
+              <span class="hidden md:inline ml-2">Info</span>
+            </a>
+            <a
+              href="#about"
+              class="px-4 py-2 rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 transition flex items-center justify-center w-10 h-10 md:w-auto md:h-auto md:px-6 md:py-2"
+              title="About"
+            >
+              <i class="fas fa-question text-lg"></i>
+              <span class="hidden md:inline ml-2">About</span>
+            </a>
+            <a
+              href="https://buymeacoffee.com/simeontsvetanov"
+              target="_blank"
+              class="px-4 py-2 rounded-full bg-yellow-500 hover:bg-yellow-600 transition flex items-center justify-center w-10 h-10 md:w-auto md:h-auto md:px-6 md:py-2"
+              title="Support"
+            >
+              <i class="fas fa-beer text-lg"></i>
+              <span class="hidden md:inline ml-2">Support</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-16 text-center">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4">
+            Create Balanced Teams in Seconds
+          </h2>
+          <p class="text-xl max-w-2xl mx-auto opacity-90">
+            Effortlessly generate fair and random teams for your projects,
+            games, or events with our intuitive team generator.
+          </p>
+          <a
+            href="#generator"
+            class="mt-8 inline-block px-8 py-3 bg-white text-primary-600 rounded-full font-semibold hover:bg-opacity-90 transition shadow-lg"
+            >Get Started</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+      <!-- Generator Section -->
+      <section id="generator" class="mb-20">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+            Team Generator
+          </h2>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Input Section -->
+            <div class="bg-white rounded-xl p-6 shadow-md">
+              <h3 class="text-xl font-semibold mb-4 text-gray-700">
+                Enter Participants
+              </h3>
+
+              <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Add participants (one per line)</label
+                >
+                <textarea
+                  id="participants"
+                  rows="8"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  placeholder="Each name on a new line"
+                ></textarea>
+              </div>
+
+              <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Number of Teams</label
+                >
+                <input
+                  type="number"
+                  id="numTeams"
+                  min="2"
+                  max="10"
+                  value="2"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                />
+              </div>
+
+              <div class="flex flex-wrap gap-3">
+                <button
+                  id="generate"
+                  class="flex-1 bg-primary-500 hover:bg-primary-600 text-white px-6 py-3 rounded-lg font-medium transition flex items-center justify-center"
+                >
+                  <i class="fas fa-random mr-2"></i> Generate Teams
+                </button>
+                <button
+                  id="clear"
+                  class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium transition flex items-center justify-center"
+                >
+                  <i class="fas fa-trash-alt mr-2"></i> Clear
+                </button>
+              </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="bg-white rounded-xl p-6 shadow-md">
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-semibold text-gray-700">
+                  Generated Teams
+                </h3>
+                <button
+                  id="copy-teams"
+                  class="text-sm bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg transition flex items-center"
+                >
+                  <i class="fas fa-copy mr-2"></i> Copy Teams
+                </button>
+              </div>
+
+              <div id="teams-container" class="space-y-4">
+                <div class="text-center py-8 text-gray-400">
+                  <i class="fas fa-users text-4xl mb-3"></i>
+                  <p>Your teams will appear here</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section id="how-it-works" class="mb-20">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+            How It Works
+          </h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-xl shadow-md text-center">
+              <div
+                class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4"
+              >
+                1
+              </div>
+              <h3 class="text-xl font-semibold mb-2 text-gray-700">
+                Enter Participants
+              </h3>
+              <p class="text-gray-600">
+                List all participants, one per line or separated by commas.
+              </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md text-center">
+              <div
+                class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4"
+              >
+                2
+              </div>
+              <h3 class="text-xl font-semibold mb-2 text-gray-700">
+                Set Parameters
+              </h3>
+              <p class="text-gray-600">
+                Choose number of teams and optional size limits for balanced
+                distribution.
+              </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md text-center">
+              <div
+                class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4"
+              >
+                3
+              </div>
+              <h3 class="text-xl font-semibold mb-2 text-gray-700">
+                Generate Teams
+              </h3>
+              <p class="text-gray-600">
+                Get perfectly randomized teams with balanced sizes instantly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="mb-20">
+        <div class="max-w-4xl mx-auto bg-white rounded-xl p-8 shadow-md">
+          <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">
+            About TeamSync
+          </h2>
+
+          <div class="prose max-w-none text-gray-700">
+            <p class="mb-4">
+              TeamSync is a free, open-source tool designed to help you quickly
+              and fairly create random teams for any purpose. Whether you're
+              organizing a sports event, classroom activity, or work project,
+              TeamSync ensures balanced and unbiased team distribution.
+            </p>
+
+            <p class="mb-4">
+              Our algorithm randomly shuffles participants while respecting your
+              specified team count and size limits, providing you with perfectly
+              balanced teams every time.
+            </p>
+
+            <div class="bg-blue-50 border-l-4 border-primary-500 p-4 mb-6">
+              <p class="text-primary-700 font-medium">
+                TeamSync is completely free to use with no ads or tracking. The
+                code is open-source and available on GitHub for anyone to review
+                or contribute.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-4 justify-center mt-8">
+              <a
+                href="https://github.com/SimeonTsvetanov/teamsync"
+                target="_blank"
+                class="px-6 py-3 bg-gray-800 hover:bg-gray-900 text-white rounded-lg font-medium transition flex items-center"
+              >
+                <i class="fab fa-github mr-2"></i> View on GitHub
+              </a>
+              <button
+                id="share-app"
+                class="px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-lg font-medium transition flex items-center"
+              >
+                <i class="fas fa-share-alt mr-2"></i> Share App
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-6 md:mb-0">
+            <div class="flex items-center">
+              <i class="fas fa-users text-2xl mr-2"></i>
+              <span class="text-xl font-bold">TeamSync</span>
+            </div>
+            <p class="text-gray-400 mt-2">Random Team Generator</p>
+          </div>
+
+          <div
+            class="flex flex-wrap gap-4 md:gap-6 items-center justify-center"
+          >
+            <a
+              href="#generator"
+              class="text-gray-300 hover:text-white transition flex items-center"
+            >
+              <i class="fas fa-random mr-1 md:mr-2"></i>
+              <span class="hidden md:inline">Generator</span>
+            </a>
+            <a
+              href="#how-it-works"
+              class="text-gray-300 hover:text-white transition flex items-center"
+            >
+              <i class="fas fa-info-circle mr-1 md:mr-2"></i>
+              <span class="hidden md:inline">How It Works</span>
+            </a>
+            <a
+              href="#about"
+              class="text-gray-300 hover:text-white transition flex items-center"
+            >
+              <i class="fas fa-question mr-1 md:mr-2"></i>
+              <span class="hidden md:inline">About</span>
+            </a>
+            <a
+              href="https://github.com/SimeonTsvetanov/Random-Team-Generator"
+              target="_blank"
+              class="text-gray-300 hover:text-white transition flex items-center"
+            >
+              <i class="fab fa-github mr-1 md:mr-2"></i>
+              <span class="hidden md:inline">GitHub</span>
+            </a>
+            <a
+              href="https://buymeacoffee.com/simeontsvetanov"
+              target="_blank"
+              class="text-yellow-400 hover:text-yellow-300 transition flex items-center"
+            >
+              <i class="fas fa-beer mr-1 md:mr-2"></i>
+              <span class="hidden md:inline">Buy Me a Beer</span>
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400"
+        >
+          <p>
+            Created with <i class="fas fa-heart text-red-400"></i> by Simeon
+            Tsvetanov
+          </p>
+          <p class="mt-2">© 2025 TeamSync. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <button
+      id="scroll-top"
+      class="fixed bottom-6 right-6 floating-btn w-12 h-12 bg-primary-500 text-white rounded-full shadow-lg flex items-center justify-center hover:bg-primary-600 transition"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
