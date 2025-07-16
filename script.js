@@ -116,12 +116,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     let textToCopy = "✨ TEAMS GENERATED ✨\n\n";
-    teams.forEach((team) => {
-      const teamName = team.querySelector("h4").textContent.trim();
+    teams.forEach((team, i) => {
       const members = Array.from(team.querySelectorAll("li")).map((li) =>
         li.textContent.trim()
       );
-      textToCopy += `🏆 ${teamName}\n`;
+      textToCopy += `🏆 Team ${i + 1} | Members - ${members.length}\n`;
       textToCopy += members.map((m) => `  👤 ${m}`).join("\n");
       textToCopy += "\n\n";
     });
@@ -229,26 +228,32 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // PWA install prompt
+  // PWA install prompt in header
   let deferredPrompt;
-  const installBtn = document.createElement("button");
-  installBtn.textContent = "Install TeamSync App";
+  const headerBtnGroup = document.querySelector(".flex.space-x-3.md:space-x-6");
+  const installBtn = document.createElement("a");
+  installBtn.textContent = "Install App";
   installBtn.className =
-    "fixed bottom-20 right-6 z-50 px-6 py-3 bg-primary-500 text-white rounded-full shadow-lg font-semibold hover:bg-primary-600 transition";
+    "px-4 py-2 rounded-full bg-primary-500 hover:bg-primary-600 text-white transition flex items-center justify-center w-10 h-10 md:w-auto md:h-auto md:px-6 md:py-2 font-semibold";
   installBtn.style.display = "none";
-  document.body.appendChild(installBtn);
+  installBtn.href = "#";
+  installBtn.title = "Install App";
+  installBtn.innerHTML =
+    '<i class="fas fa-download text-lg"></i><span class="hidden md:inline ml-2">Install App</span>';
+  headerBtnGroup.prepend(installBtn);
 
   window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
     deferredPrompt = e;
-    installBtn.style.display = "block";
+    installBtn.style.display = "flex";
   });
 
-  installBtn.addEventListener("click", () => {
+  installBtn.addEventListener("click", (e) => {
+    e.preventDefault();
     installBtn.style.display = "none";
     if (deferredPrompt) {
       deferredPrompt.prompt();
-      deferredPrompt.userChoice.then((choiceResult) => {
+      deferredPrompt.userChoice.then(() => {
         deferredPrompt = null;
       });
     }
