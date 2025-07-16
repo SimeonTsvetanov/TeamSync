@@ -229,12 +229,16 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // --- PWA Install Button Logic ---
-  const headerBtnGroup = document.querySelector('.flex.space-x-3.md\\:space-x-6');
+  const headerBtnGroup = document.querySelector(
+    ".flex.space-x-3.md\\:space-x-6"
+  );
   const installBtn = document.createElement("a");
   installBtn.href = "#";
   installBtn.title = "Install App";
-  installBtn.className = "px-4 py-2 rounded-full bg-primary-500 hover:bg-primary-600 text-white transition flex items-center justify-center w-10 h-10 md:w-auto md:h-auto md:px-6 md:py-2 font-semibold";
-  installBtn.innerHTML = '<i class="fas fa-download text-lg"></i><span class="hidden md:inline ml-2">Install App</span>';
+  installBtn.className =
+    "px-4 py-2 rounded-full bg-primary-500 hover:bg-primary-600 text-white transition flex items-center justify-center w-10 h-10 md:w-auto md:h-auto md:px-6 md:py-2 font-semibold";
+  installBtn.innerHTML =
+    '<i class="fas fa-download text-lg"></i><span class="hidden md:inline ml-2">Install App</span>';
   headerBtnGroup.prepend(installBtn);
 
   let deferredPrompt = null;
@@ -245,11 +249,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function showAppInstalledPopup() {
     let popup = document.createElement("div");
-    popup.className = "fixed top-6 left-1/2 transform -translate-x-1/2 z-50 bg-primary-500 text-white px-6 py-3 rounded shadow-lg flex items-center";
-    popup.innerHTML = '<span class="mr-4">App already installed</span><button class="ml-auto bg-white text-primary-600 px-3 py-1 rounded font-semibold">OK</button>';
+    popup.className =
+      "fixed top-6 left-1/2 transform -translate-x-1/2 z-50 bg-primary-500 text-white px-6 py-3 rounded shadow-lg flex items-center";
+    popup.innerHTML =
+      '<span class="mr-4">App already installed</span><button class="ml-auto bg-white text-primary-600 px-3 py-1 rounded font-semibold">OK</button>';
     document.body.appendChild(popup);
     const okBtn = popup.querySelector("button");
-    let timeout = setTimeout(() => { popup.remove(); }, 4000);
+    let timeout = setTimeout(() => {
+      popup.remove();
+    }, 4000);
     okBtn.addEventListener("click", () => {
       clearTimeout(timeout);
       popup.remove();
