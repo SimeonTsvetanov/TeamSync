@@ -10,7 +10,7 @@ Effortlessly generate fair and random teams for your projects, games, or events 
 
 You can use TeamSync instantly via GitHub Pages:
 
-**[WebPage Link](https://SimeonTsvetanov.github.io/TeamSync/)**
+**[Live Demo Link](https://SimeonTsvetanov.github.io/TeamSync/)**
 
 ---
 
@@ -20,7 +20,7 @@ You can use TeamSync instantly via GitHub Pages:
 - Choose number of teams (2-10)
 - Random, balanced team generation
 - Copy teams to clipboard
-- Share app via Web Share API or Twitter
+- Share teams via Messenger or Web Share API
 - Responsive, modern design (Tailwind CSS)
 - No ads, no tracking, 100% free & open-source
 
@@ -53,6 +53,13 @@ Or deploy directly to GitHub Pages for instant access.
 - HTML5
 - CSS3 (Tailwind CSS)
 - JavaScript (Vanilla)
+- Font Awesome
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please fork the repo and submit a pull request.
 
 ---
 
@@ -66,6 +73,9 @@ This project is licensed under the MIT License.
 
 Created by Simeon Tsvetanov
 
+- [GitHub](https://github.com/SimeonTsvetanov/TeamSync)
 - [Buy Me a Coffee](https://buymeacoffee.com/simeontsvetanov)
 
 ---
+
+Made with ❤️ using TeamSync.

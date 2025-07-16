@@ -228,4 +228,33 @@ document.addEventListener("DOMContentLoaded", function () {
       participantsTextarea.value = newLines.join("\n");
     }
   });
+
+  // PWA install prompt
+  let deferredPrompt;
+  const installBtn = document.createElement("button");
+  installBtn.textContent = "Install TeamSync App";
+  installBtn.className =
+    "fixed bottom-20 right-6 z-50 px-6 py-3 bg-primary-500 text-white rounded-full shadow-lg font-semibold hover:bg-primary-600 transition";
+  installBtn.style.display = "none";
+  document.body.appendChild(installBtn);
+
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = "block";
+  });
+
+  installBtn.addEventListener("click", () => {
+    installBtn.style.display = "none";
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        deferredPrompt = null;
+      });
+    }
+  });
+
+  window.addEventListener("appinstalled", () => {
+    installBtn.style.display = "none";
+  });
 });
