@@ -57,6 +57,22 @@ Or deploy directly to GitHub Pages for instant access.
 
 ---
 
+## 🛠️ Local Tailwind CSS Setup
+
+This project now uses a local Tailwind CSS build for production. To build the CSS:
+
+1. Install dependencies (only once):
+   ```bash
+   npm install
+   ```
+2. Build the CSS:
+   ```bash
+   npm run build:css
+   ```
+3. Deploy all files including output.css to GitHub Pages.
+
+---
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please fork the repo and submit a pull request.
