@@ -8,12 +8,6 @@ self.addEventListener("install", (event) => {
         "/styles.css",
         "/script.js",
         "/manifest.json",
-        "/TeamSyncIcon-192.png",
-        "/TeamSyncIcon-512.png",
-        "/TeamSyncIcon-384.png",
-        "/TeamSyncIcon-256.png",
-        "/TeamSyncIcon-144.png",
-        "/TeamSyncIcon-72.png",
       ]);
     })
   );
