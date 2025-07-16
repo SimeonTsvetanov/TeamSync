@@ -3,7 +3,7 @@
   "short_name": "TeamSync",
   "description": "Random Team Generator - Create balanced teams in seconds!",
   "start_url": ".",
-  "display": "standalone",
+  "display": "fullscreen",
   "background_color": "#f8fafc",
   "theme_color": "#0ea5e9",
   "icons": [

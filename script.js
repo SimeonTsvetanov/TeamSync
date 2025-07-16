@@ -171,7 +171,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     } else {
       // Fallback for browsers that don't support Web Share API
-      const shareUrl = `https://twitter.com/intent/tweet?text=Check%20out%20this%20awesome%20team%20generator%20tool!&url=${encodeURIComponent(
+      const shareUrl = `https://www.facebook.com/dialog/send?link=${encodeURIComponent(
+        window.location.href
+      )}&app_id=YOUR_APP_ID&redirect_uri=${encodeURIComponent(
         window.location.href
       )}`;
       window.open(shareUrl, "_blank");
@@ -199,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
     );
     if (cheatIndex !== -1) {
       const friendNames = [
-        "Simeon",
+        "Moni",
         "Iliyana",
         "George",
         "Viki",
@@ -209,10 +211,10 @@ document.addEventListener("DOMContentLoaded", function () {
         "Ralica",
         "Venci",
         "Slavi",
-        "Djoni",
+        "Joni",
         "Apapa",
         "Mitaka G",
-        "Antonio",
+        "Tonkata",
         "Dinkata",
         "Raiko",
         "Tancheto",
