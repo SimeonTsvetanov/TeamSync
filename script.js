@@ -287,18 +287,72 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // --- Hamburger Menu Logic ---
+  const hamburgerMenu = document.getElementById("hamburger-menu");
+  const mobileMenu = document.getElementById("mobile-menu");
+  let menuBackdrop = null;
+
+  function toggleMenu() {
+    const isActive = hamburgerMenu.classList.contains("active");
+    
+    if (isActive) {
+      // Close menu
+      hamburgerMenu.classList.remove("active");
+      mobileMenu.classList.remove("active");
+      if (menuBackdrop) {
+        menuBackdrop.classList.remove("active");
+        setTimeout(() => {
+          if (menuBackdrop && menuBackdrop.parentNode) {
+            menuBackdrop.remove();
+            menuBackdrop = null;
+          }
+        }, 300);
+      }
+      document.body.style.overflow = "";
+    } else {
+      // Open menu
+      hamburgerMenu.classList.add("active");
+      mobileMenu.classList.add("active");
+      
+      // Create backdrop
+      menuBackdrop = document.createElement("div");
+      menuBackdrop.className = "menu-backdrop";
+      document.body.appendChild(menuBackdrop);
+      
+      // Activate backdrop after a small delay for smooth animation
+      setTimeout(() => {
+        if (menuBackdrop) {
+          menuBackdrop.classList.add("active");
+        }
+      }, 10);
+      
+      // Prevent body scroll when menu is open
+      document.body.style.overflow = "hidden";
+      
+      // Close menu when backdrop is clicked
+      menuBackdrop.addEventListener("click", toggleMenu);
+    }
+  }
+
+  hamburgerMenu.addEventListener("click", toggleMenu);
+
+  // Close menu when navigation links are clicked
+  const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+  mobileNavLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      // Small delay to allow navigation to start before closing menu
+      setTimeout(toggleMenu, 100);
+    });
+  });
+
   // --- PWA Install Button Logic ---
-  const headerBtnGroup = document.querySelector(
-    ".flex.space-x-3.md\\:space-x-6"
-  );
+  const mobileNav = document.querySelector(".mobile-nav");
   const installBtn = document.createElement("a");
   installBtn.href = "#";
   installBtn.title = "Install App";
-  installBtn.className =
-    "px-4 py-2 rounded-full bg-primary-500 hover:bg-primary-600 text-white transition flex items-center justify-center w-10 h-10 md:w-auto md:h-auto md:px-6 md:py-2 font-semibold";
-  installBtn.innerHTML =
-    '<i class="fas fa-download text-lg"></i><span class="hidden md:inline ml-2">Install App</span>';
-  headerBtnGroup.prepend(installBtn);
+  installBtn.className = "mobile-nav-link";
+  installBtn.innerHTML = '<i class="fas fa-download mr-3"></i>Install App';
+  mobileNav.appendChild(installBtn);
 
   let deferredPrompt = null;
   window.addEventListener("beforeinstallprompt", (e) => {

@@ -26,46 +26,41 @@
     <!-- Header -->
     <header class="gradient-bg text-white">
       <div class="container mx-auto px-4 py-8">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-          <div class="flex items-center mb-6 md:mb-0">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center">
             <i class="fas fa-users text-3xl mr-3"></i>
             <h1 class="text-3xl font-bold">TeamSync</h1>
           </div>
-          <div class="flex space-x-3 md:space-x-6">
-            <a
-              href="#generator"
-              class="px-4 py-2 rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 transition flex items-center justify-center w-10 h-10 md:w-auto md:h-auto md:px-6 md:py-2"
-              title="Generator"
-            >
-              <i class="fas fa-random text-lg"></i>
-              <span class="hidden md:inline ml-2">Generator</span>
+          
+          <!-- Hamburger Menu Button -->
+          <button id="hamburger-menu" class="hamburger-menu" aria-label="Toggle menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="mobile-menu">
+          <nav class="mobile-nav">
+            <a href="#generator" class="mobile-nav-link">
+              <i class="fas fa-random mr-3"></i>
+              Generator
             </a>
-            <a
-              href="#how-it-works"
-              class="px-4 py-2 rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 transition flex items-center justify-center w-10 h-10 md:w-auto md:h-auto md:px-6 md:py-2"
-              title="Info"
-            >
-              <i class="fas fa-info-circle text-lg"></i>
-              <span class="hidden md:inline ml-2">Info</span>
+            <a href="#how-it-works" class="mobile-nav-link">
+              <i class="fas fa-info-circle mr-3"></i>
+              Info
             </a>
-            <a
-              href="#about"
-              class="px-4 py-2 rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 transition flex items-center justify-center w-10 h-10 md:w-auto md:h-auto md:px-6 md:py-2"
-              title="About"
-            >
-              <i class="fas fa-question text-lg"></i>
-              <span class="hidden md:inline ml-2">About</span>
+            <a href="#about" class="mobile-nav-link">
+              <i class="fas fa-question mr-3"></i>
+              About
             </a>
-            <a
-              href="https://buymeacoffee.com/simeontsvetanov"
-              target="_blank"
-              class="px-4 py-2 rounded-full bg-yellow-500 hover:bg-yellow-600 transition flex items-center justify-center w-10 h-10 md:w-auto md:h-auto md:px-6 md:py-2"
-              title="Support"
-            >
-              <i class="fas fa-beer text-lg"></i>
-              <span class="hidden md:inline ml-2">Support</span>
+            <a href="https://buymeacoffee.com/simeontsvetanov" target="_blank" class="mobile-nav-link">
+              <i class="fas fa-beer mr-3"></i>
+              Support
             </a>
-          </div>
+            <!-- Install App link will be added dynamically by JavaScript -->
+          </nav>
         </div>
 
         <div class="mt-16 text-center">
