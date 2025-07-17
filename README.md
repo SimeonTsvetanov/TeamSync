@@ -35,14 +35,35 @@ You can use TeamSync instantly via GitHub Pages:
 
 ---
 
-## 📦 Installation
+## 📦 Installation & Local Development
 
-Clone the repo and open `index.html` in your browser:
+Clone the repo:
 
 ```bash
 git clone https://github.com/SimeonTsvetanov/TeamSync.git
 cd TeamSync
 ```
+
+### Quick Start - Run Locally
+
+**Method 1: Python HTTP Server (Simplest)**
+```bash
+python -m http.server 8000
+```
+Then open: http://localhost:8000
+
+**Method 2: Node.js http-server (Recommended)**
+```bash
+npm install -g http-server
+http-server
+```
+Then open the displayed URL (usually http://localhost:8080)
+
+**Method 3: VS Code Live Server**
+- Install "Live Server" extension
+- Right-click `index.html` → "Open with Live Server"
+
+📖 **For detailed instructions and more options, see [Local Development Guide](local_development_guide.md)**
 
 Or deploy directly to GitHub Pages for instant access.
 

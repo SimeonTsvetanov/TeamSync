@@ -9,6 +9,32 @@ document.addEventListener("DOMContentLoaded", function () {
   const teamsContainer = document.getElementById("teams-container");
   const scrollTopBtn = document.getElementById("scroll-top");
   const shareAppBtn = document.getElementById("share-app");
+  
+  // Function to show "Copied to clipboard" notification in center of screen
+  function showCopiedNotification() {
+    // Remove any existing notification
+    const existingNotification = document.getElementById('center-notification');
+    if (existingNotification) {
+      existingNotification.remove();
+    }
+    
+    // Create notification element
+    const notification = document.createElement("div");
+    notification.id = "center-notification";
+    notification.className = "fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 text-white px-6 py-3 rounded-lg text-sm fade-in shadow-lg";
+    notification.textContent = "Copied to clipboard";
+    notification.style.zIndex = "9999";
+    
+    // Add notification to body
+    document.body.appendChild(notification);
+    
+    // Remove notification after 2 seconds
+    setTimeout(() => {
+      if (notification && notification.parentNode) {
+        notification.remove();
+      }
+    }, 2000);
+  };
 
   // Generate teams function
   function generateTeams(participants, numTeams) {
@@ -66,6 +92,36 @@ document.addEventListener("DOMContentLoaded", function () {
       `;
       container.appendChild(teamElement);
     });
+    
+    // Add bottom action buttons
+    const bottomActions = document.createElement("div");
+    bottomActions.className = "flex justify-center mt-6 space-x-16";
+    
+    // Refresh button
+    const refreshBtn = document.createElement("button");
+    refreshBtn.className = "w-10 h-10 bg-primary-500 hover:bg-primary-600 text-white rounded-full flex items-center justify-center transition shadow";
+    refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i>';
+    refreshBtn.title = "Regenerate Teams";
+    refreshBtn.addEventListener("click", function() {
+      generateBtn.click(); // Reuse the generate button click event
+    });
+    
+    // Copy button
+    const copyBtn = document.createElement("button");
+    copyBtn.className = "w-10 h-10 bg-primary-500 hover:bg-primary-600 text-white rounded-full flex items-center justify-center transition shadow";
+    copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+    copyBtn.title = "Copy Teams";
+    copyBtn.addEventListener("click", function() {
+      // Call the main copy function
+      copyTeamsBtn.click(); 
+      
+      // Show notification in center of screen
+      showCopiedNotification();
+    });
+    
+    bottomActions.appendChild(refreshBtn);
+    bottomActions.appendChild(copyBtn);
+    container.appendChild(bottomActions);
   }
 
   // Main generate button click handler
@@ -91,8 +147,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const teams = generateTeams(participants, numTeams);
     displayTeams(teams, teamsContainer);
-    // Scroll to teams section
-    teamsContainer.scrollIntoView({ behavior: "smooth" });
+    // Scroll to teams card section
+    teamsContainer.closest(".bg-white.rounded-xl").scrollIntoView({ behavior: "smooth" });
   });
 
   // Clear button click handler
@@ -134,6 +190,9 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(() => {
         copyTeamsBtn.innerHTML = originalText;
       }, 2000);
+      
+      // Show copied notification
+      showCopiedNotification();
     });
   });
 
